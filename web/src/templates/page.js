@@ -1,7 +1,10 @@
 import React from 'react';
 
-export default () => (
-  <div>
-    <h1>Template page aqui</h1>
-  </div>
-)
+export default ({ pageContext }) => {
+  return (
+    <div>
+      <h1>{pageContext.title}</h1>
+      <div dangerouslySetInnerHTML={{__html: pageContext.content}} />
+    </div>
+  );
+}
