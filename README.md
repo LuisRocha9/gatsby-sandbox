@@ -2,28 +2,20 @@
 
 This README would normally document whatever steps are necessary to get your application up and running.
 
-### What is this repository for? ###
+### WORDPRESS SETUP ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+** 1. Download wordpress
+* Using WP-CLI:
 
-### How do I get set up? ###
+$ cd wordpress-gatsby-sandbox/wp
+$ wp core download
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+** 2. Create database
+* eg:
+* database name: wp-gatsby-sandbox
+* user: root
+* password: root
 
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+** 3. Install wordpress
+* You can use the admin/editor credentials in wp/README.md
+* Check the box "Discouraging Search Engines From Indexing WordPress Site"
