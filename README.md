@@ -19,3 +19,10 @@ $ wp core download
 ** 3. Install wordpress
 * You can use the admin/editor credentials in wp/README.md
 * Check the box "Discouraging Search Engines From Indexing WordPress Site"
+
+
+### GATSBY SETUP ###
+
+$ npm install
+$ gatsby build
+$ gatsby develop
