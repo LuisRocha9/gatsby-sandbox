@@ -33,5 +33,6 @@ module.exports = {
         url: `http://localhost:8888/wordpress-gatsby-sandbox/wp/graphql`,
       },
     },
+    `gatsby-plugin-sass`
   ],
 }
