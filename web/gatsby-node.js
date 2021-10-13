@@ -38,7 +38,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     });
   }
 
-  // POSTS 
+  // POSTS
   const resultPost = await graphql(`
     {
       allWpPost {
@@ -72,19 +72,32 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     });
   }
 
-  // PROJECTS 
+  // PROJECTS
   const resultProject = await graphql(`
-    {
-      allWpProject {
-        nodes {
-          id
-          uri
-          title
-          content
-          slug
-        }
+      {
+          allWpProject {
+              nodes {
+                  id
+                  uri
+                  title
+                  content
+                  slug
+                  projectInfo {
+                      author {
+                          ... on WpAuthor {
+                              id
+                              authorInfo {
+                                  biography
+                                  photo {
+                                      sourceUrl
+                                  }
+                              }
+                          }
+                      }
+                  }
+              }
+          }
       }
-    }
   `);
 
   if (resultProject.errors) {

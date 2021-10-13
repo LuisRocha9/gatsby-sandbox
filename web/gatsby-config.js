@@ -31,6 +31,7 @@ module.exports = {
       resolve: `gatsby-source-wordpress`,
       options: {
         url: `http://localhost:8888/wordpress-gatsby-sandbox/wp/graphql`,
+        useACF: true
       },
     },
     `gatsby-plugin-sass`
