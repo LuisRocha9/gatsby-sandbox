@@ -26,6 +26,7 @@ nav {
 
 .menu--sticky {
   position: sticky;
+  min-width: 100vw;
   top: 0;
   padding: $gutter*2 $gutter;
   background-color: white;
