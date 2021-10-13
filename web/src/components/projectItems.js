@@ -35,7 +35,7 @@ const ProjectsItems = () => {
                     <Link to={`/project/${project.node.slug}`}>
                         <div className="thumbnail">
                             <div className="thumbnail__img">
-                                <img src={project.node.featuredImage.node.sourceUrl} />
+                                <img src={project.node.featuredImage.node.sourceUrl} alt="Thumbnail"/>
                             </div>
                             <div className="thumbnail__title">
 

@@ -86,6 +86,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
                       author {
                           ... on WpAuthor {
                               id
+                              title
                               authorInfo {
                                   biography
                                   photo {

@@ -20,16 +20,20 @@ const Project = ({ pageContext }) => {
                     </div>
                     <div className="col-xs-12 col-md-3 col-md-offset-1">
                         <div className="article__sidebar">
-                            <img src={pageContext.projectInfo.author.authorInfo.photo.sourceUrl}/>
-                            <div dangerouslySetInnerHTML={{__html: pageContext.projectInfo.author.authorInfo.biography}}/>
+                            <div className="author__image">
+                                <img src={pageContext.projectInfo.author.authorInfo.photo.sourceUrl} alt={pageContext.projectInfo.author.title}/>
+                            </div>
+                            <div className="author__bio">
+                                <div dangerouslySetInnerHTML={{__html: pageContext.projectInfo.author.authorInfo.biography}}/>
+                            </div>
                             <div className="article__tags">
                                 {pageContext.categories.nodes.map(category => (
-                                    <a key={category.id} href="" className="button-tag">{category.name}</a>
+                                    <a key={category.id} href="#" className="button-tag">{category.name}</a>
                                 ))}
                             </div>
                             <div className="article__tags">
                                 {pageContext.tags.nodes.map(tag => (
-                                    <a key={tag.id} href="" className="button-tag">{tag.name}</a>
+                                    <a key={tag.id} href="#" className="button-tag">{tag.name}</a>
                                 ))}
                             </div>
                         </div>
