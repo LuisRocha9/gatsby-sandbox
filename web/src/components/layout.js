@@ -22,17 +22,18 @@ const Layout = ({ children }) => {
                 }
             }
         }
-        `)
-        
-        return (
-            <>
+        `
+    )
+
+    return (
+        <div>
             <main>
                 <div className="max-container">
                     {children}
                 </div>
             </main>
-        </>
-)
+        </div>
+    )
 }
 
 Layout.propTypes = {

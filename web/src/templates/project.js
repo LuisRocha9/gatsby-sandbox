@@ -1,11 +1,13 @@
 import React from 'react';
 
 import Layout from '../components/layout';
+import MainMenu from '../components/mainMenu';
+
 
 const Project = ({ pageContext }) => {
-    console.log(pageContext)
     return (
         <Layout>
+            <MainMenu />
             <article>
                 <div className="row">
                     <div className="col-xs-12">
