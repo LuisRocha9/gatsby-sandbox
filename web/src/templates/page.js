@@ -1,8 +1,10 @@
 import React from 'react';
 
-export default ({pageContext}) => (
+export default ({ pageContext }) => {
+  return (
     <div>
-        <h1  dangerouslySetInnerHTML={{__html: pageContext.title}} />
-        <div dangerouslySetInnerHTML={{__html: pageContext.content}} />
+      <h1>{pageContext.title}</h1>
+      <div dangerouslySetInnerHTML={{__html: pageContext.content}} />
     </div>
-)
+  );
+}

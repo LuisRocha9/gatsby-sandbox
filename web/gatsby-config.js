@@ -28,27 +28,11 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-source-wordpress",
+      resolve: `gatsby-source-wordpress`,
       options: {
-        minimizeDeprecationNotice: true,
-        baseUrl: "localhost:8888/wordpress-gatsby-sandbox/wp/",
-        protocol: "http",
-        hostingWPCOM: false,
-        useACF: true,
-        verboseOutput: false,
-        perPage: 100,
-        concurrentRequests: 10,
-        includedRoutes: [
-          "**/categories",
-          "**/posts",
-          "**/pages",
-          "**/media",
-          "**/tags",
-          "**/taxonomies",
-          "**/users",
-          "**/project"
-        ],
+        url: `http://localhost:8888/wordpress-gatsby-sandbox/wp/graphql`,
       },
     },
+    `gatsby-plugin-sass`
   ],
 }
