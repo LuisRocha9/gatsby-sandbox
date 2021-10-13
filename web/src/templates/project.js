@@ -2,7 +2,7 @@ import React from 'react';
 
 import Layout from '../components/layout';
 
-export default ({ pageContext }) => {
+const Project = ({ pageContext }) => {
   return (
     <Layout>
       <div>
@@ -11,4 +11,6 @@ export default ({ pageContext }) => {
       </div>
     </Layout>
   );
-}
+};
+
+export default Project;
