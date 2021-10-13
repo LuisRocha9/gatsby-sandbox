@@ -95,6 +95,20 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
                           }
                       }
                   }
+                  categories {
+                      nodes {
+                          id
+                          name
+                          slug
+                      }
+                  }
+                  tags{
+                      nodes {
+                          id
+                          name
+                          slug
+                      }
+                  }
               }
           }
       }

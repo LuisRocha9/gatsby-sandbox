@@ -22,6 +22,16 @@ const Project = ({ pageContext }) => {
                         <div className="article__sidebar">
                             <img src={pageContext.projectInfo.author.authorInfo.photo.sourceUrl}/>
                             <div dangerouslySetInnerHTML={{__html: pageContext.projectInfo.author.authorInfo.biography}}/>
+                            <div className="article__tags">
+                                {pageContext.categories.nodes.map(category => (
+                                    <a key={category.id} href="" className="button-tag">{category.name}</a>
+                                ))}
+                            </div>
+                            <div className="article__tags">
+                                {pageContext.tags.nodes.map(tag => (
+                                    <a key={tag.id} href="" className="button-tag">{tag.name}</a>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
