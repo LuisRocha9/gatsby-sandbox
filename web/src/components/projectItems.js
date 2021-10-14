@@ -54,7 +54,7 @@ const ProjectsItems = () => {
                 body: JSON.stringify({
                     query: `
                     query MyQuery($categoryName: String = "") {
-                        allWpProject(filter: {categories: {nodes: {elemMatch: {name: {eq: $categoryName}}}}}) {
+                        allWpProject(filter: {categories: {nodes: {elemMatch: {name: {glob: $categoryName}}}}}) {
                             edges {
                                 node {
                                     id
@@ -71,7 +71,7 @@ const ProjectsItems = () => {
                         }
                     }`,
                     variables: {
-                        categoryName: filter,
+                        categoryName: filter !== "" ? filter : "*",
                     }
                 })
 
