@@ -3,6 +3,18 @@ const Promise = require(`bluebird`)
 const path = require(`path`)
 const slash = require(`slash`)
 
+
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions;
+  const typeDefs = `
+    type WpBlockAttributesObject {
+      foobar: String
+    }
+  `;
+  createTypes(typeDefs);
+};
+
+
 exports.createPages = async ({ actions, graphql, reporter }) => {
   // PAGES
   const resultPages = await graphql(`
