@@ -3,34 +3,9 @@ import { useStaticQuery, graphql, Link } from "gatsby";
 import SearchInput from './searchInput';
 
 
-const ProjectsItems = () => {
+const ProjectsItems = (props) => {
 
-    const data = useStaticQuery(graphql
-        `
-        {
-            allWpProject {
-                edges {
-                    node {
-                        id
-                        title
-                        slug
-                        content
-                        excerpt
-                        featuredImage {
-                            node {
-                                sourceUrl
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        `
-    )
-
-
-    const [projects, setProject] = useState(data);
+    const [projects, setProject] = useState(props.data);
 
     const [filter, setFilter] = useState("");
 
@@ -78,9 +53,8 @@ const ProjectsItems = () => {
             })
             .then(response => response.json()) // parse JSON from request
             .then(resultData => {
-                console.log(resultData.data)
                 setProject(resultData.data)
-            }) // set data for the number of stars
+            })
 
         }
 
@@ -109,5 +83,7 @@ const ProjectsItems = () => {
             </div>
         )
     }
+
+
 
     export default ProjectsItems;

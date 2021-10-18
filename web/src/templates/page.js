@@ -3,8 +3,33 @@ import React from 'react';
 import Layout from '../components/layout';
 import ProjectItems from '../components/projectItems';
 import MainMenu from '../components/mainMenu';
+import { graphql } from 'gatsby';
 
-const Page = ({ pageContext }) => {
+export const query = graphql`
+
+{
+    allWpProject {
+        edges {
+            node {
+                id
+                title
+                slug
+                content
+                excerpt
+                featuredImage {
+                    node {
+                        sourceUrl
+                    }
+                }
+            }
+        }
+    }
+}
+
+`;
+
+
+const Page = ({ pageContext, data }) => {
     return (
         <Layout>
             <div className="row">
@@ -13,7 +38,7 @@ const Page = ({ pageContext }) => {
                 </div>
             </div>
             <MainMenu />
-            <ProjectItems />
+            <ProjectItems data={data}/>
         </Layout>
     );
 };
