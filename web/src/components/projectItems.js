@@ -78,6 +78,7 @@ const ProjectsItems = () => {
             })
             .then(response => response.json()) // parse JSON from request
             .then(resultData => {
+                console.log(resultData.data)
                 setProject(resultData.data)
             }) // set data for the number of stars
 

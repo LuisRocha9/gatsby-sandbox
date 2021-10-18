@@ -9,12 +9,16 @@ register_nav_menus(
 
 
 add_action( 'graphql_register_types', function() {
-    register_graphql_field( 'Author', 'author', [
+    register_graphql_field( 'Project', 'author', [
         'type'        => 'String',
-        'description' => 'author meta value',
-        'resolve'     => function( \WPGraphQL\Model\Post $post, $args, $context, $info ) {
-            return 'Example string with the title of the post: ' . $post->titleRendered;
+		'description' => 'author meta value',
+        'resolve'     => function(  \WPGraphQL\Model\Post $post) {
+		$author_id = get_post_meta( $post->databaseId, 'author', true );
+        return get_the_title( absint( $author_id ));
         }
     ] );
 });
 ?>
+
+
+ 

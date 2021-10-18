@@ -45,5 +45,7 @@
     "description": "",
     "show_in_graphql": 1,
     "graphql_field_name": "projectInfo",
-    "modified": 1634229525
+    "map_graphql_types_from_location_rules": 0,
+    "graphql_types": "",
+    "modified": 1634295786
 }
