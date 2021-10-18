@@ -98,7 +98,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
                       author {
                           ... on WpAuthor {
                               id
+                              uri
                               title
+                              slug
                               authorInfo {
                                   biography
                                   photo {
@@ -145,4 +147,44 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       });
     });
   }
+
+  // Authors
+  const resultAuthor = await graphql(`
+      {
+          allWpAuthor {
+            nodes {
+              slug
+              authorInfo {
+                biography
+                photo {
+                  sourceUrl
+                }
+              }
+              title
+              uri
+            }
+          }
+        }
+
+  `);
+
+  if (resultAuthor.errors) {
+    reporter.error("There was an error fetching posts", resultAuthor.errors);
+  }
+
+  const { allWpAuthor } = resultAuthor.data;
+
+  // Define the template to use
+  const templateAuthor = require.resolve(`./src/templates/project-author.js`);
+
+  if (allWpAuthor.nodes.length) {
+    allWpAuthor.nodes.map(post => {
+      actions.createPage({
+        path: post.uri,
+        component: templateAuthor,
+        context: post,
+      });
+    });
+  }
+
 }
