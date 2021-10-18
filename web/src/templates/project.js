@@ -23,7 +23,7 @@ const Project = ({ pageContext }) => {
                     <div className="col-xs-12 col-md-3 col-md-offset-1">
                         <div className="article__sidebar">
                             <div className="author__image">
-                                <Link Link to={`/project-author/${pageContext.projectInfo.author.slug}`}>
+                                <Link to={`/project-author/${pageContext.projectInfo.author.slug}`}>
                                     <img src={pageContext.projectInfo.author.authorInfo.photo.sourceUrl} alt={pageContext.projectInfo.author.title}/>
                                 </Link>
                             </div>

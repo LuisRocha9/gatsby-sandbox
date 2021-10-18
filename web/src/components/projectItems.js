@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useStaticQuery, graphql, Link } from "gatsby";
 import SearchInput from './searchInput';
+import { getAllProjectByCategory, getAllProjects, getAllProjectByCategoryTag, getAllProjectByTag } from '../queries/queries';
 
 
 const ProjectsItems = (props) => {
@@ -9,16 +10,36 @@ const ProjectsItems = (props) => {
 
     const [filter, setFilter] = useState("");
 
-    const handleChange = (event) => {
-        setFilter(event.target.value);
+    const [categories, setCategories] = useState([]);
+    const [tags, setTags] = useState([]);
+
+    const handleChangeCategory = (event) => {
+        if(event.target.checked) setCategories(oldArray => [...oldArray, event.target.value]);
+        else setCategories(categories.filter(item => item !== event.target.value))
     }
+
+    const handleChangeTag = (event) => {
+        if(event.target.checked) setTags(oldArray => [...oldArray, event.target.value]);
+        else setTags(tags.filter(item => item !== event.target.value))
+    }
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        onSearch(filter);
+        onSearch(categories, tags);
     }
 
-    const onSearch = (filter) => {
+
+    const onSearch = (categories, tags) => {
+
+        let query = null;
+
+        if(categories.length > 0 && tags.length > 0) query = getAllProjectByCategoryTag;
+        else if(categories.length > 0 && tags.length <= 0) query = getAllProjectByCategory;
+        else if(categories.length <= 0 && tags.length > 0) query = getAllProjectByTag;
+        else query = getAllProjects;
+
+
         fetch(`http://localhost:8000/___graphql`,
             {
                 method: 'POST',
@@ -27,26 +48,10 @@ const ProjectsItems = (props) => {
                     'Accept': 'application/json'
                 },
                 body: JSON.stringify({
-                    query: `
-                    query MyQuery($categoryName: String = "") {
-                        allWpProject(filter: {categories: {nodes: {elemMatch: {name: {glob: $categoryName}}}}}) {
-                            edges {
-                                node {
-                                    id
-                                    title
-                                    slug
-                                    excerpt
-                                    featuredImage {
-                                        node {
-                                            sourceUrl
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }`,
+                    query,
                     variables: {
-                        categoryName: filter !== "" ? filter : "*",
+                        categoryName: categories,
+                        tagName: tags
                     }
                 })
 
@@ -60,7 +65,7 @@ const ProjectsItems = (props) => {
 
         return (
             <div>
-                <SearchInput value={filter} handleChange={handleChange} handleSubmit={handleSubmit}/>
+                <SearchInput value={filter} handleChangeCategory={handleChangeCategory} handleChangeTag={handleChangeTag} handleSubmit={handleSubmit}/>
                 <div className="row thumbnails">
                     {projects.allWpProject.edges.map(project => (
                         <div key={project.node.id} className="col-xs-6 col-md-4">
